@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array对象的常用方法</title>
+    <script type="text/javascript">
+        <!--
+        /*
+            array对象的方法：
+                    1.join()：默认情况下用逗号隔开每个数据
+                    2.push()：将元素添加到数组的末尾
+                    3.reverse()：反转顺序
+                    4.shift()：删除并返回第一个元素
+                    5.sort()：排序：默认情况下先将能转换为number类型的字符串和number类型的放一起比较（String比较String）
+
+         */
+
+        var arr = ["中国", "美国", "日本"];
+        alert(arr.join());//默认用逗号隔开
+        alert(arr.join(""));//用空字符串连接
+        arr.push("韩国");
+        alert(arr.join());
+        arr.reverse();
+        alert(arr.join());
+        alert(arr.shift());
+
+        var arr1 = [3, 4, "23", "34", 124];
+        alert(arr1.sort());
+
+        var arr2 = [3, "a", 4, "23", "bc", "34", 124, "ert"];
+        alert(arr2.sort());
+
+        alert(arr1.sort(function (a, b) {//传递一个function类型参数，制定我们的比较规则，只适用于数字类型的字符串
+            if (a * 1 > b * 1)
+                return 1;
+            else
+                return -1;
+        }));
+
+        //-->
+    </script>
+</head>
+<body>
+</body>
+</html>

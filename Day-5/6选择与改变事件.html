@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择与改变事件</title>
+</head>
+<script type="text/javascript">
+    <!--
+    /*
+        onchange :改变的同时，必须失去焦点
+     */
+    function fun(obj) {
+        alert(obj.value);
+    }
+
+    function fun1(v) {
+        alert(v);
+    }
+
+    function fun2(v, index) {
+        alert(v + ":" + index);
+
+    }
+
+    //-->
+</script>
+<body>
+<input type="text" name="" onselect="fun(this)" onchange="fun1(this.value)">
+<select onchange="fun2(this.value,this.selectedIndex)">
+    <option value="china">中国</option>
+    <option value="america">美国</option>
+    <option value="japan">日本</option>
+</select>
+</body>
+</html>

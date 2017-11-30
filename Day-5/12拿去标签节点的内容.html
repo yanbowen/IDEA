@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取标签节点对象的方法</title>
+</head>
+<body>
+<h1 id="h1">明天休息</h1>
+<script type="text/javascript">
+    <!--
+    //示例： 拿到明天休息的文本
+    //第一种方式
+    var h1 = document.getElementById("h1");
+    //第二种方法
+    var h2 = document.getElementsByTagName("h1");
+    alert(h2[0].innerHTML);
+    //alert(h1.innerHTML);
+    //alert(h1.firstChild.nodeValue);
+    //alert(h1.lastChild.nodeValue);
+    alert(h1.innerText);
+
+    //-->
+</script>
+</body>
+</html>

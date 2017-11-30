@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM</title>
+    <script type="text/javascript">
+        <!--
+        /*
+            Window对象的属性：
+                1.innerHeight：返回文档显示区的高度
+                2.innerWidth：返回文档显示区的宽度     IE不支持
+                        通用写法：
+                3.outerheight   包括工具栏、菜单栏的高度
+                4.outerwidth    包括滚动条的宽度
+         */
+
+        function init() {
+            var x = window.document.body.clientWidth;
+            var y = window.document.body.clientHeight;
+            alert(x + ":" + y);
+        }
+
+        //-->
+    </script>
+</head>
+<body onload="init()">
+<p>你好</p>
+</body>
+</html>

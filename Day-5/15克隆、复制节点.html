@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>克隆、复制节点</title>
+</head>
+<body>
+<ul>
+    <li id="bj" onclick="changeNode()">北京</li>
+    <li>湖南</li>
+    <li>山东</li>
+</ul>
+<ul>
+    <li id="game">打<p>灰机</p></li>
+    <li>抓泥鳅</li>
+    <li>斗地主</li>
+</ul>
+<script type="text/javascript">
+    <!--
+
+    function changeNode() {
+        //拿到北京节点
+        var bjNode = document.getElementById("bj");
+        //拿到打灰机对象
+        var gameNode = document.getElementById("game");
+        //替换
+        //bjNode.parentNode.replaceChild(gameNode, bjNode);
+        //克隆一份打灰机
+        var node = gameNode.cloneNode(true);
+        bjNode.parentNode.replaceChild(node, bjNode);
+    }
+
+    //-->
+</script>
+</body>
+</html>

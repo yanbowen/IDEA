@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="a.css">
+    <title>选择器</title>
+    <style type="text/css">
+        /*
+            选择器：
+                1.基本选择器
+                        a.标签选择器：就是选择了页面上一类标签
+                        b.类选择器：规定用圆点.来定义,比标签选择器方便
+                        c.ID选择器：规定用#来定义：针对特定的一个标签使用
+                        d.通用选择器：用*来定义
+         */
+        div {
+            border: 1px solid red;
+        }
+
+        .one{
+            border: 1px solid red;
+        }
+
+        #two{
+            border: 3px dashed green;
+        }
+
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+<div>你好</div>
+<div class="one">你好</div>
+<p class="one">你好</p>
+<h1 class="one">nihao</h1>
+<h2 id="two">你好</h2><!id 是唯一 不能相同>
+</body>
+</html>

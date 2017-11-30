@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9图片轮播</title>
+</head>
+<style>
+    #d {
+        position: relative;
+        top: -30px;
+    }
+
+    label {
+        margin-left: 23px;
+    }
+
+    .one {
+        width: 10px;
+        height: 10px;
+        border: 1px solid black;
+        background-color: white;
+    }
+</style>
+<script type="text/javascript">
+    <!--
+
+    var n = 0;
+    var t = 0;
+
+    function init() {
+        var lbs = document.getElementsByTagName("label");
+        //注册label事件
+        for (var i = 0; i < lbs.length; i++) {
+            lbs[i].onmouseover = function () {
+                //让事件先停下来
+                clearTimeout(t);
+                //让图片显示为相应的选项
+                var num = this.innerText * 1;
+                //拿到img标签
+                var img = document.getElementById("img");
+                img.src = "images/" + num + ".jpg";
+                //清空所以样式
+                clearStyle();
+                //让label样式变成one
+                this.className = "one";
+
+            }
+
+            lbs[i].onmouseout = function () {
+                //隔1秒调用fun()
+                t = setTimeout("fun()", 1000);
+                //改变当前n的值
+                n = this.innerText * 1;
+            }
+        }
+
+        fun();
+    }
+
+    function fun() {
+        n++;
+        if (n == 7)
+            n = 1;
+        //拿到图标对象
+        var img = document.getElementById("img");
+        img.src = "images/" + n + ".jpg";
+        //清空所以样式
+        clearStyle();
+        //设定相应的label控件的样式
+        document.getElementById("i" + n).className = "one";
+
+        t = setTimeout("fun()", 1000);
+    }
+
+    function clearStyle() {
+        //先清空所以label的样式
+        var lbs = document.getElementsByTagName("label");
+        for (var i = 0; i < lbs.length; i++) {
+            lbs[i].className = "";
+        }
+    }
+
+    //-->
+</script>
+<body onload="init()">
+<div align="center">
+    <img src="images/1.jpg" width="460" height="520" id="img">
+    <div id="d">
+        <label id="i1">&nbsp;1&nbsp;</label>
+        <label id="i2">&nbsp;2&nbsp;</label>
+        <label id="i3">&nbsp;3&nbsp;</label>
+        <label id="i4">&nbsp;4&nbsp;</label>
+        <label id="i5">&nbsp;5&nbsp;</label>
+        <label id="i6">&nbsp;6&nbsp;</label>
+
+    </div>
+</div>
+</body>
+</html>

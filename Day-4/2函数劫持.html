@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数劫持</title>
+    <script type="text/javascript">
+        <!--
+        //函数劫持：改变JavaScript的函数预定好的功能
+        window.alert = function (x) {//预定义的功能
+            document.write(x);
+        }
+        alert("abc");
+        //-->
+    </script>
+</head>
+<body>
+</body>
+</html>

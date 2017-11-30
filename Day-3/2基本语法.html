@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript基本语法</title>
+    <script type="text/javascript">
+        <!--
+        /*
+            JavaScript中的数据类型：
+                a.基本类型
+                    1.undefined：没有给变量赋值时的类型
+                    2.String
+                    3.Boolean
+                    4.Number
+                    5.function
+                    6.null
+                b.引用类型
+                    object
+            判断变量的类型有两种方式：
+                    1.采用typeof()：打印的是所有类型的toString方法（所有类型的小写）
+                    2.采用instanceof关键字判断：是判断变量是不是由某种类型new出来的
+         */
+        var a = 10;
+        alert(typeof(a));
+        alert(a instanceof Number);
+        var b = new Number(10);
+        alert(b instanceof Number);
+        alert(typeof (b) == "number")
+        //-->
+    </script>
+</head>
+<body>
+<p onclick="alert(`你好`)">大家好</p>
+</body>
+</html>

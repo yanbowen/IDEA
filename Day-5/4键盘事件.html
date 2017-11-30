@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件</title>
+</head>
+<script type="text/javascript">
+    <!--
+    /*
+            onkeypress :键盘按下再抬起
+            onkeydown :键盘按下
+            onkeyup :键盘抬起
+     */
+    function init(obj, e) {
+
+        //按键得到asc码
+        var key = e.keyCode;
+        obj.value = key;
+    }
+
+    //-->
+</script>
+<body>
+<input type="text" name="" onkeypress="init(this,event)">
+</body>
+</html>

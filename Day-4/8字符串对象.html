@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串对象</title>
+    <script type="text/javascript">
+        <!--
+        /*
+            String对象的方法：
+                    1.substr();//截取子字符串,两个参数，第一个是参数下标。第二个是截取的长度
+                    2.substring();//截取子字符串,两个参数，代表下标
+         */
+
+        function fun() {
+            //1.拿到p标签对象
+            var p = document.getElementById("p");
+            //2.拿到p标签对象的主体内容
+            var txt = p.innerHTML;  //innerHTML必须是有开始标签和结束标签的标签对象才能使用
+            //3.改变字体内容。在赋值回去
+            p.innerHTML = txt.big().big();
+        }
+
+        //示例：点击变色按钮，让p标签中的文本的颜色随机变化
+        var arr = ["red", "blue", "green", "yellow", "#888888"];
+
+        function fun1() {
+
+            //拿到p标签对象
+            var p = document.getElementById("p");
+            //随机取得一个整数作为数组的下标
+            var index = Math.floor(Math.random() * arr.length);
+            //3.给p标签对象的主体改变颜色，并赋值回去
+            //var txt = p.innerHTML;
+            var txt = p.innerText;
+            p.innerHTML = txt.fontcolor(arr[index]);
+
+            setTimeout("fun1()", "3000");
+        }
+
+        function fun2() {
+            var txt = document.getElementById("h1").innerHTML;
+            txt = document.getElementById("h1").innerText;
+            alert(txt);
+        }
+
+        var s = "abcdefg";
+        alert(s.substring(2, 3));
+        alert(s.substring(3, 2));
+        alert(s.substring(300, -2));
+        alert(s.substr(2, 3));
+        //-->
+    </script>
+</head>
+<body>
+<p id="p">大</p>
+<input type="button" value="变大" onclick="fun()"><br>
+<p></p>
+<input type="button" value="变色" onclick="fun1()">
+
+<h1 id="h1"><font>你好</font></h1>
+<input type="button" value="演示innerH和innerText的区别" onclick="fun2()">
+</body>
+</html>

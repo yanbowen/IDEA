@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Window对象：opener属性</title>
+    <script type="text/javascript">
+        <!--
+        /*
+            Window对象的属性：
+                1.opener属性：代表父窗口
+                        应用：必须要求两个窗口拥有父子关系
+                                1,超链接（设置target属性为_blank）
+                                2.window.open()打开窗口
+                2.parent属性：代表父窗口
+                        使用地方 1.框架中
+                                 2.内嵌框架
+                3.frames[]：拿到子窗口
+         */
+        function fun() {
+            window.open("sub.html");
+        }
+
+        //-->
+    </script>
+</head>
+<body>
+<input type="text" name="" id="txt">
+<input type="button" value="打开sub.html页面" onclick="fun()">
+<a href="sub.html" target="_blank">打开sub.html页面</a>
+</body>
+</html>

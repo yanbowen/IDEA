@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取下拉列表框的option文本</title>
+</head>
+<body>
+<select name="edu" id="edu">
+    <option value="本科">本科</option>
+    <option value="专科">专科</option>
+    <option value="高中">高中</option>
+    <option value="小学">小学</option>
+    <option value="幼儿园">幼儿园</option>
+</select><br>
+<script type="text/javascript">
+    <!--
+    var ops = document.getElementsByTagName("option");
+    for (var i = 0; i < ops.length; i++) {
+        //alert(ops[i].text);
+        alert(ops[i].innerHTML);
+    }
+
+    //-->
+</script>
+</body>
+</html>
