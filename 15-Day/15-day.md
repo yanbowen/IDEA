@@ -17,7 +17,7 @@
 * DQL ： 数据查询语言
 * TPL ： 事务处理语言
   
-## mysql 5.5
+## MySQL 5.5
 	//进入数据库
 	mysql -u root -proot  
 ![](https://i.imgur.com/H0oxPZv.png)
