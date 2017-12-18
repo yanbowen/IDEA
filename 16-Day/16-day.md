@@ -80,7 +80,7 @@
   	
     	public DBHelper(String sql) {  
     	    try {  
-    	        Class.forName(name);//指定连接类型  
+    	        Class.forName(name);//指定连接类型，注册数据库驱动  
     	        conn = DriverManager.getConnection(url, user, password);//获取连接  
     	        pst = conn.prepareStatement(sql);//准备执行语句  
     	    } catch (Exception e) {  
@@ -121,7 +121,7 @@
 	            while (ret.next()) {  
 	                String uid = ret.getInt("id");  
 	                String ufname = ret.getString("name");  
-	                String ulname = ret.getString("address");  
+	                String ulname = ret.getString(3);//根据字段的索引  
 	                String udate = ret.getString(4);  
 	                System.out.println(uid + "\t" + ufname + "\t" + ulname + "\t" + udate );  
 	            }//显示数据  
@@ -133,3 +133,5 @@
 	    }  
   
 	}  
+ 
+---  
