@@ -25,3 +25,54 @@ Dalvik Virtual Machine : DVM
  
 ---  
   
+### 清单文件
+* package：应用在系统中的唯一识别 
+
+### DDMS
+* Dalvik debug monitor service
+
+### 常用的adb指令：Android debug bridge：安卓调试桥
+* adb start-server:启动adb进程
+* adb kill-server：杀死adb进程
+* adb devices：查看当前与开发环境连接的设备，此命令也可以启动adb进程
+* adb install XXX.apk：往模拟器安装apk
+* adb uninstall 包名：删除模拟器中的应用
+* adb shell:进入linux命令行	
+* ps：查看运行进程
+* ls：查看当前目录下的文件结构
+* netstat -ano：查看占用端口的进程  
+  
+--- 
+  
+## 布局介绍
+
+* LinearLayout		(线性布局)
+* RelativeLayout	(相对布局)
+* AbsoluteLayout	(绝对布局)
+* FrameLayout		(帧布局)
+* TableLayout		(表格布局)
+
+---
+  
+### 线性布局
+
+* 推荐dp
+* 字体sp
+* 像素px(不推荐) 
+
+---
+
+* 指定各个节点的排列方向
+
+		android:orientation="horizontal"
+* 设置右对齐
+
+		android:layout_gravity="right"
+* 当竖直布局时，只能左右对齐和水平居中，顶部底部对齐竖直居中无效
+
+* 当水平布局时，只能顶部底部对齐和竖直居中
+
+* 线性布局非常重要的一个属性：权重 --- __权重设置的是按比例分配剩余的空间__
+
+		android:layout_weight="1"
+
