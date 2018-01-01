@@ -54,7 +54,7 @@ Dalvik Virtual Machine : DVM
 
 ---
   
-### 线性布局
+### 线性布局 LinearLayout
 
 * 推荐dp
 * 字体sp
@@ -75,4 +75,82 @@ Dalvik Virtual Machine : DVM
 * 线性布局非常重要的一个属性：权重 --- __权重设置的是按比例分配剩余的空间__
 
 		android:layout_weight="1"
+通过设置控件的layout\_weight属性以控制各个控件在布局中的相对大小。
+线性布局会根据该控件layout_weight值与其所处布局中所有控件weight值之和的比值为该控件分配占用的区域。  
+
+### 相对布局 RelativeLayout
+* 组件默认左对齐、顶部对齐
+* 设置组件在指定组件的右边
+
+		android:layout_toRightOf="@id/tv1"
+* 设置在指定组件的下边
+
+		android:layout_below="@id/tv1"
+* 设置右对齐父元素
+
+		android:layout_alignParentRight="true"
+* 设置与指定组件右对齐
+
+		android:layout_alignRight="@id/tv1"
+
+* 组件竖直居中 
+
+		android:layout_centerVertical="true"
+
+### 帧布局
+* 有特定的api要求必须使用帧布局
+* 组件默认位置都是左上角，组件之间可以重叠
+* 可以设置上下左右对齐，水平竖直居中，设置方式与线性布局一样  
+
+		android:layout_gravity="bottom"  
+
+### 表格布局 TableLayout
+* 每个<TableRow/>节点是一行，它的每个子节点是一列
+* 表格布局中的节点可以不设置宽高，因为设置了也无效
+	* 根节点<TableLayout/>的子节点宽为匹配父元素，高为包裹内容
+	* <TableRow/>节点的子节点宽为包裹内容，高为包裹内容
+	* 以上默认属性无法修改
+	* android:layout_column="1" //强制修改列索引
+	* android:layout_span="2"   //设置当前列占用2列
+
+* 根节点中可以设置以下属性，表示让第1列拉伸填满屏幕宽度的剩余空间
+
+		android:stretchColumns="1"
+
+### 绝对布局 AbsoluteLayout
+* 直接指定组件的x、y坐标
+
+		android:layout_x="144dp"
+        android:layout_y="154dp"
+
+---
+## logcat
+* 日志信息总共分为5个等级
+	* verbose ：冗余，最低等级
+	* debug ：调试
+	* info ：正常等级的信息
+	* warn ：警告
+	* error ：错误
+* 定义过滤器方便查看
+* System.out.print输出的日志级别是info，tag是System.out
+* Android提供的日志输出api
+	
+		Log.v(TAG, "加油吧，童鞋们");
+		Log.d(TAG, "加油吧，童鞋们");
+		Log.i(TAG, "加油吧，童鞋们");
+		Log.w(TAG, "加油吧，童鞋们");
+		Log.e(TAG, "加油吧，童鞋们");
+
+---
+## 在Android中读写程序
+
+### 内部存储空间
+* RAM内存：运行内存，相当于电脑的内存
+* ROM内存：存储内存，相当于电脑的硬盘
+
+### 外部存储空间
+* SD卡：相当于电脑的移动硬盘
+* 弹土司提示用户登录成功
+
+		Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
 
