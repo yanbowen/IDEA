@@ -222,3 +222,116 @@ Dalvik Virtual Machine : DVM
 		//从SharedPreference里取数据
 		String name = sp.getBoolean("name", "");
 
+### 使用XMl序列化器生成xml文件
+* 得到xml序列化器对象
+
+		XmlSerializer xs = Xml.newSerializer();
+* 给序列化器设置输出流
+
+		File file = new File(Environment.getExternalStorageDirectory(), "backupsms.xml");
+		FileOutputStream fos = new FileOutputStream(file);
+		//指定用什么编码生成xml文件
+		xs.setOutput(fos, "utf-8");
+* 开始生成xml文件
+
+		//指定头结点中enconding属性值
+		xs.startDocument("utf-8", true);
+
+		xs.startTag(null, "message");
+
+		xs.text(sms.getData()...);
+
+		xs.endTag(null, "message");
+
+		//告诉序列化器生成完毕
+		xs.endDocument();
+
+--- 
+
+### 拿到xml文件
+		
+		InputStream is = getClassLoader().getResourceAsStream("weather.xml");
+### 拿到pull解析器
+
+		XmlPullParser xp = Xml.newPullParser();
+
+### 开始解析
+* 拿到指针所在当前节点的事件类型
+
+		int type = xp.getEventType();
+* 事件类型主要有五种
+	* START_DOCUMENT：xml头的事件类型
+	* END_DOCUMENT：xml尾的事件类型
+	* START_TAG：开始节点的事件类型
+	* END_TAG：结束节点的事件类型
+	* TEXT：文本节点的事件类型
+
+如果获取到的事件类型不是END_DOCUMENT，就说明解析还没有完成，如果是，解析完成，while循环结束
+
+	while(type != XmlPullParser.END_DOCUMENT) 
+
+---
+
+		public void click(View v){
+			//获取到src文件夹下的资源文件
+			InputStream is = getClassLoader().getResourceAsStream("weather.xml");
+			
+			//拿到pull解析器对象
+			XmlPullParser xp = Xml.newPullParser();
+			//初始化
+			try {
+				xp.setInput(is, "gbk");
+				
+				//获取当前节点的事件类型，通过事件类型的判断，我们可以知道当前节点是什么节点，从而确定我们应该做什么操作
+				int type = xp.getEventType();
+				City city = null;
+				while(type != XmlPullParser.END_DOCUMENT){
+					//根据节点的类型，要做不同的操作
+					switch (type) {
+					case XmlPullParser.START_TAG:
+						//					获取当前节点的名字
+						if("weather".equals(xp.getName())){
+							//创建city集合对象，用于存放city的javabean
+							cityList = new ArrayList<City>();
+						}
+						else if("city".equals(xp.getName())){
+							//创建city的javabean对象
+							city = new City();
+						}
+						else if("name".equals(xp.getName())){
+							//				获取当前节点的下一个节点的文本
+							String name = xp.nextText();
+							city.setName(name);
+						}
+						else if("temp".equals(xp.getName())){
+							//				获取当前节点的下一个节点的文本
+							String temp = xp.nextText();
+							city.setTemp(temp);
+						}
+						else if("pm".equals(xp.getName())){
+							//				获取当前节点的下一个节点的文本
+							String pm = xp.nextText();
+							city.setPm(pm);
+						}
+						break;
+					case XmlPullParser.END_TAG:
+						if("city".equals(xp.getName())){
+							//把city的javabean放入集合中
+							cityList.add(city);
+						}
+						break;
+	
+					}
+				
+					//把指针移动到下一个节点，并返回该节点的事件类型
+					type = xp.next();
+				}
+				
+				for (City c : cityList) {
+					System.out.println(c.toString());
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
