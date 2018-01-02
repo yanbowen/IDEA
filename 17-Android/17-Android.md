@@ -150,7 +150,75 @@ Dalvik Virtual Machine : DVM
 
 ### 外部存储空间
 * SD卡：相当于电脑的移动硬盘
+	* 2.2之前，sd卡路径：sdcard
+	* 4.3之前，sd卡路径：mnt/sdcard
+	* 4.3开始，sd卡路径：storage/sdcard
+* SD卡：相当于电脑的移动硬盘
 * 弹土司提示用户登录成功
 
 		Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+
+* 写sd卡需要权限
+
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+* 读sd卡，在4.0之前不需要权限，4.0之后可以设置为需要
+
+		<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+* 使用api获得sd卡的真实路径，部分手机品牌会更改sd卡的路径
+
+		Environment.getExternalStorageDirectory()
+* 判断sd卡是否准备就绪
+
+		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+
+### 使用路径api读写文件
+* getFilesDir()得到的file对象的路径是data/data/com.itheima.rwinrom2/files
+	* 存放在这个路径下的文件，只要你不删，它就一直在
+		File file = new File(getFilesDir(), "info.txt");
+* getCacheDir()得到的file对象的路径是data/data/com.itheima.rwinrom2/cache
+	* 存放在这个路径下的文件，当内存不足时，有可能被删除
+
+* 系统管理应用界面的清除缓存，会清除cache文件夹下的东西，清除数据，会清除整个包名目录下的东西
+
+---
+### Linux文件的访问权限
+* 在Android中，每一个应用是一个独立的用户
+* drwxrwxrwx
+* 第1位：d表示文件夹，-表示文件
+* 第2-4位：rwx，表示这个文件的拥有者用户（owner）对该文件的权限
+	* r：读
+	* w：写
+	* x：执行
+* 第5-7位：rwx，表示跟文件拥有者用户同组的用户（grouper）对该文件的权限
+* 第8-10位：rwx，表示其他用户组的用户（other）对该文件的权限  
+  
+----
+### openFileOutput的四种模式
+* MODE_PRIVATE：-rw-rw----
+* MODE_APPEND:-rw-rw----
+* MODE_WORLD_WRITEABLE:-rw-rw--w-
+* MODE_WORLD_READABLE:-rw-rw-r--
+
+---
+
+### SharedPreference
+>用SharedPreference存储账号密码
+
+* 往SharedPreference里写数据
+
+		//拿到一个SharedPreference对象
+		SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+		//拿到编辑器
+		Editor ed = sp.edit();
+		//写数据
+		ed.putString("name", name);
+		ed.putString("password", password);
+		ed.commit();
+
+* 从SharedPreference里取数据
+
+		SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+		//从SharedPreference里取数据
+		String name = sp.getBoolean("name", "");
 
