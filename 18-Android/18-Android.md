@@ -325,4 +325,6 @@
 			}
 * 屏幕上能显示多少个条目，getView方法就会被调用多少次，屏幕向下滑动时，getView会继续被调用，创建更多的View对象显示至屏幕
 
-
+		//获取View的三种方式
+![](https://i.imgur.com/VqbRt3w.jpg)  
+  
