@@ -335,3 +335,180 @@ Dalvik Virtual Machine : DVM
 				e.printStackTrace();
 			}
 		}
+
+---
+
+
+## 系统的层级架构  
+  
+整体架构组件，主要分为五层：  
+
+* 应用层（Applications）
+* 应用程序框架（Application Framework）
+* 核心库与运行环境层（Libraries and Runtime）
+* Linux Kernel 层（Linux 内核层）  
+  
+![](https://i.imgur.com/rAbXjF4.png)  
+  
+1.1.1 应用层
+Android 的应用程序主要是用户界面（User Interface），通常以 JAVA 程序编写，其中还可以包含各种资源文件（放置在 res 目录中）。JAVA 程序及相关资源经过编译后，将生成一个 APK 包（Android Package的缩写，Android应用程序安装包的意思）。Android 本身提供了主屏幕（Home），联系人（Contact），电话（Phone），浏览器（Browsers）等众多的核心应用。同时应用程序的开发者还可以使用应用程序框架层的 API 实现自己的程序。
+
+ 
+
+1.1.2 框架层
+Android 的应用程序框架为应用程序层的开发者提供 APIs，它实际上是一个应用程序的框架。由于上层的应用程序是以 JAVA 构建的，因此本层次提供的首先包含了 UI 程序中所需要的各种控件： 例如： Views ( 视图组件 ) 包括 lists( 列表 ), grids( 栅格 ), text boxes( 文本框 ), buttons( 按钮 ) 等，甚至一个嵌入式的 Web 浏览器。一个 Android 的应用程序可以利用应用程序框架中的以下几个部分： Activity （活动）、Broadcast Intent Receiver （广播意图接收者）、Service （服务）、Content Provider （内容提供者）。
+
+ 
+
+1.1.3 核心库与运行环境层
+本层次对应一般嵌入式系统，相当于中间件层次。Android 的本层次分成两个部分一个是各种库，另一个是 Android 运行环境。本层的内容大多是使用 C++ 实现的。 在其中，各种库包括：
+
+ 
+
+l C 库
+
+C 语言的标准库，这也是系统中一个最为底层的库，C 库是通过 Linux 的系统调用来实现。
+
+ 
+
+l 多媒体框架（Media Framework）
+
+这部分内容是 Android 多媒体的核心部分，基于 PacketVideo（即 PV）的 OpenCORE，从功能上本库一共分为两大部分，一个部分是音频、视频的回放（Play Back），另一部分是则是音视频的纪录（Recorder）。
+
+ 
+
+l SGL
+
+2D 图像引擎。
+
+ 
+
+l SSL
+
+即 Secure Socket Layer 位于 TCP/IP 协议与各种应用层协议之间 , 为数据通讯提供安全支持。
+
+ 
+
+l OpenGL ES 1.0 
+
+本部分提供了对 3D 的支持。
+
+ 
+
+l 界面管理工具（Surface Management）
+
+本部分提供了对管理显示子系统等功能。
+
+ 
+
+l SQLite
+
+一个通用的嵌入式数据库
+
+ 
+
+l WebKit
+
+网络浏览器的核心
+
+ 
+
+l FreeType
+
+位图和矢量字体的功能。
+
+ 
+
+Android 的各种库一般是以系统中间件的形式提供的，它们均有的一个显著特点就是与移动设备的平台的应用密切相关。 Android 运行环境主要指的虚拟机技术—— Dalvik。Dalvik 虚拟机和一般 JAVA 虚拟机（Java VM）不同，它执行的不是 JAVA 标准的字节码（bytecode ）而是 Dalvik 可执行格式（.dex）中执行文件。在执行的过程中，每一个应用程序即一个进程（Linux 的一个 Process）。 二者最大的区别在于 Java VM 是以基于栈的虚拟机（Stack-based），而 Dalvik 是基于寄存器的虚拟机（Register-based）。显然，后者最大的好处在于可以根据硬件实现更大的优化，这更适合移动设备的特点。
+
+ 
+
+1.1.4 Linux内核层
+Android 使用 Linux2.6 作为操作系统，Linux2.6 是一种标准的技术，Linux 也是一个开放的操作系统。Android 对操作系统的使用包括核心和驱动程序两部分，Android 的 Linux 核心为标准的 Linux2.6 内核，Android 更多的是需要一些与移动设备相关的驱动程序。主要的驱动如下所示：
+
+ 
+
+l 显示驱动（Display Driver）
+
+常用基于 Linux 的帧缓冲（Frame Buffer）驱动
+
+ 
+
+l Flash 内存驱动（Flash Memory Driver）
+
+ 
+
+l 照相机驱动（Camera Driver）
+
+常用基于 Linux 的 v4l（Video for ）驱动。
+
+ 
+
+l 音频驱动（Audio Driver）
+
+常用基于 ALSA（Advanced Linux Sound Architecture，高级 Linux 声音体系）驱动
+
+ 
+
+l WiFi 驱动（Camera Driver）
+
+基于 IEEE 802.11 标准的驱动程序
+
+ 
+
+l 键盘驱动（KeyBoard Driver）
+
+ 
+
+l 蓝牙驱动（Bluetooth Driver）
+
+Binder IPC 驱动：Andoid 一个特殊的驱动程序，具有单独的设备节点，提供进程间通讯的功能。
+
+ 
+
+l Power Management（能源管理）  
+  
+1.1.4 Linux内核层
+Android 使用 Linux2.6 作为操作系统，Linux2.6 是一种标准的技术，Linux 也是一个开放的操作系统。Android 对操作系统的使用包括核心和驱动程序两部分，Android 的 Linux 核心为标准的 Linux2.6 内核，Android 更多的是需要一些与移动设备相关的驱动程序。主要的驱动如下所示：
+
+ 
+
+l 显示驱动（Display Driver）
+
+常用基于 Linux 的帧缓冲（Frame Buffer）驱动
+
+ 
+
+l Flash 内存驱动（Flash Memory Driver）
+
+ 
+
+l 照相机驱动（Camera Driver）
+
+常用基于 Linux 的 v4l（Video for ）驱动。
+
+ 
+
+l 音频驱动（Audio Driver）
+
+常用基于 ALSA（Advanced Linux Sound Architecture，高级 Linux 声音体系）驱动
+
+ 
+
+l WiFi 驱动（Camera Driver）
+
+基于 IEEE 802.11 标准的驱动程序
+
+ 
+
+l 键盘驱动（KeyBoard Driver）
+
+ 
+
+l 蓝牙驱动（Bluetooth Driver）
+
+Binder IPC 驱动：Andoid 一个特殊的驱动程序，具有单独的设备节点，提供进程间通讯的功能。
+
+ 
+
+l Power Management（能源管理）
