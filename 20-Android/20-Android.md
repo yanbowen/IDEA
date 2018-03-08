@@ -7,28 +7,32 @@
 * 确定图片的网址
 * 发送http请求
 		
+		//1.确定下载网址，将其封装成一个URL对象
     	URL url = new URL(address);
-    	//获取连接对象，并没有建立连接
+    	//2.获取（客户端和服务器）连接对象，并没有建立连接
     	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    	//设置连接和读取超时
+		//3.对连接对象进行初始化
+    	//  一、设置连接和读取超时
     	conn.setConnectTimeout(5000);
     	conn.setReadTimeout(5000);
-    	//设置请求方法，注意必须大写
+    	//	二、设置请求方法，注意必须大写
     	conn.setRequestMethod("GET");
-    	//建立连接，发送get请求
+    	//5.建立连接，发送get请求
 		//conn.connect();
-    	//建立连接，然后获取响应吗，200说明请求成功
+    	//6.建立连接，然后获取响应吗，200说明请求成功
     	conn.getResponseCode();
 * 服务器的图片是以流的形式返回给浏览器的 
 
     	//拿到服务器返回的输入流
     	InputStream is = conn.getInputStream();
     	//把流里的数据读取出来，并构造成图片
+		//使用位图工厂，构造位图对象
     	Bitmap bm = BitmapFactory.decodeStream(is);
 * 把图片设置为ImageView的显示内容
 
 		ImageView iv = (ImageView) findViewById(R.id.iv);
-   		iv.setImageBitmap(bm);
+		iv.setImageBitmap(bm);   
+
 * 添加权限
   
 ### 主线程不能被阻塞
@@ -104,4 +108,38 @@
 * code.google.com
 * 在github搜索smart-image-view
 * 下载开源项目smart-image-view  
+  
+### Html源文件查看器
+* 发送GET请求（不在主线程，使用消息队列）
+
+		URL url = new URL(path);
+		//获取连接对象
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		//设置连接属性
+		conn.setRequestMethod("GET");
+		conn.setConnectTimeout(5000);
+		conn.setReadTimeout(5000);
+		//建立连接，获取响应吗
+		if(conn.getResponseCode() == 200){
+			InputStream is = conn.getInputStream();
+		}
+* 获取服务器返回的流，从流中把html源码读取出来
+
+		byte[] b = new byte[1024];
+		int len = 0;
+		//字节数组输出流，读取输入流的文本数据时，同步把数据写入数组输出流
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		while((len = is.read(b)) != -1){
+			//把读到的字节先写入字节数组输出流中存起来
+			bos.write(b, 0, len);
+		}
+		//把字节数组输出流中的内容转换成字符串
+		//默认使用utf-8
+		text = new String(bos.toByteArray());  
+  
+### 乱码的处理
+* 乱码的出现是因为服务器和客户端码表不一致导致
+		
+		//手动指定码表
+		text = new String(bos.toByteArray(), "gb2312");  
   
