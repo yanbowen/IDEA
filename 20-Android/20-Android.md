@@ -141,5 +141,50 @@
 * 乱码的出现是因为服务器和客户端码表不一致导致
 		
 		//手动指定码表
-		text = new String(bos.toByteArray(), "gb2312");  
+		text = new String(bos.toByteArray(), "gb2312");    
+
+---
+  
+## HttpClient框架
+### 发送get请求  
+
+* 1.创建一个客户端对象
+
+		HttpClient hc = new DefaultHttpClient();
+
+* 2.创建一个HttpGet请求对象
+
+		HttpGet hg = new HttpGet(path);
+
+* 3.使用客户端对象，发送get请求，建立连接，返回响应头对象
+
+		HttpResponse hr = hc.execute(hg);
+
+* 获取状态行对象，获取状态码，如果为200则说明请求成功
+
+		if(hr.getStatusLine().getStatusCode() == 200){
+			//拿到服务器返回的输入流
+			InputStream is = hr.getEntity().getContent();
+			String text = Utils.getTextFromStream(is);
+		}
+
+### 发送post请求
+
+		//创建一个客户端对象
+		HttpClient client = new DefaultHttpClient();
+		//创建一个post请求对象
+		HttpPost hp = new HttpPost(path);
+
+* 往post对象里放入要提交给服务器的数据
+	
+		//要提交的数据以键值对的形式存在BasicNameValuePair对象中
+		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		BasicNameValuePair bnvp = new BasicNameValuePair("name", name);
+		BasicNameValuePair bnvp2 = new BasicNameValuePair("pass", pass);
+		parameters.add(bnvp);
+		parameters.add(bnvp2);
+		//创建实体对象，指定进行URL编码的码表
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters, "utf-8");
+		//为post请求设置实体
+		hp.setEntity(entity);  
   
