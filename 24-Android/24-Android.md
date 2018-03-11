@@ -32,3 +32,35 @@
 			cr.insert(Uri.parse("content://com.itheima.person"), cv);
 		}
 
+###UriMatcher  
+	UriMatcher um = new UriMatcher(UriMatcher.NO_MATCH);
+
+* 用于判断一条uri跟指定的多条uri中的哪条匹配
+* 添加匹配规则
+
+		//指定多条uri
+		um.addURI("com.itheima.person", "person", PERSON_CODE);  // content://com.itheima.person/person
+		um.addURI("com.itheima.person", "company", COMPANY_CODE);// content://com.itheima.person/company
+		//#号可以代表任意数字
+		um.addURI("com.itheima.person", "person/#", QUERY_ONE_PERSON_CODE);
+* 通过Uri匹配器可以实现操作不同的表
+
+		@Override
+		public Uri insert(Uri uri, ContentValues values) {
+			if(um.match(uri) == PERSON_CODE){
+				db.insert("person", null, values);
+			}
+			else if(um.match(uri) == COMPANY_CODE){
+				db.insert("company", null, values);
+			}
+			else{
+				throw new IllegalArgumentException();
+			}
+			return uri;
+		}
+* 如果路径中带有数字，把数字提取出来的api
+
+		int id = (int) ContentUris.parseId(uri);  
+  
+---  
+  
