@@ -61,14 +61,15 @@ Android系统在运行的过程中，会产生很多事件，比如开机、电�
 * 在服务中定义一个类实现Ibinder接口，以在onBind方法中返回
 
 		class ZhongJianRen extends Binder implements PublicBusiness{
-		public void QianXian(){
-			//访问服务中的banZheng方法
-			BanZheng();
-		}	
-		public void daMaJiang(){
+			public void QianXian(){
+				//访问服务中的banZheng方法
+				BanZheng();
+			}	
+			public void daMaJiang(){
 			
-		}
-	}
+			}
+		}  
+
 * 把QianXian方法抽取到接口PublicBusiness中定义    
 
 ---  
