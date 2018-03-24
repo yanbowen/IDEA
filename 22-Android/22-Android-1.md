@@ -165,25 +165,25 @@ Android系统在运行的过程中，会产生很多事件，比如开机、电�
   
 	public class LeaderService extends Service {
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		// 返回一个Binder对象，这个对象就是中间人对象
-		return new ZhouMi();
-	}
+		@Override
+		public IBinder onBind(Intent intent) {
+			// 返回一个Binder对象，这个对象就是中间人对象
+			return new ZhouMi();
+		}
 
-	class ZhouMi extends Binder implements PublicBusiness{
-		public void QianXian(){
-			banZheng();
-		}
+		class ZhouMi extends Binder implements PublicBusiness{
+			public void QianXian(){
+				banZheng();
+			}
 		
-		public  void daMaJiang(){
-			System.out.println("陪李处打麻将");
+			public  void daMaJiang(){
+				System.out.println("陪李处打麻将");
+			}
 		}
-	}
 	
-	public void banZheng(){
-		System.out.println("李处帮你来办证");
-	}
+		public void banZheng(){
+			System.out.println("李处帮你来办证");
+		}
 	}  
   
 ### PublicBusiness.java类   
