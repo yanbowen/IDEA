@@ -22,7 +22,7 @@
 	mysql -u root -proot  
 ![](https://i.imgur.com/H0oxPZv.png)
 ### 数据库的操作
-注释 ## （oracle 注释 --）
+注释 ## （oracle 注释 --）   
 CREATE		//创建  
 ALTER		//更改表信息  
 DROP		//删除  
@@ -49,6 +49,9 @@ TRUNCATE	//删除表信息
 
 	#修改数据库字符集为gbk
 	alter database mydb character set gbk;  
+  
+	#展示正在使用的数据库
+	show database();
   
 #### 针对表的操作
 	#创建表t
